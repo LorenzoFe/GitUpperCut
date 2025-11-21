@@ -1,40 +1,48 @@
 function setupSPA() {
-
-    // Evento dos links do menu
     $("body").on("click", "a[data-page]", function (e) {
         e.preventDefault();
-
         const page = $(this).data("page");
         loadPage(page);
     });
 
-    // Carregar página inicial
+    // Carrega a Home inicialmente
     loadPage("home.html");
 }
 
 function loadPage(page) {
-    $("#content").load("pages/" + page, function (response, status, xhr) {
-
-        if (status === "error") {
-            $("#content").html("<h2>Erro ao carregar a página.</h2>");
-            return;
-        }
-
-        // Se a pagina for o blog ativa a animação
-        if (page.includes("blog")) {
-            animateBlogCards();
-        }
+    $("#content").fadeOut(200, function() {
+        $(this).load("pages/" + page, function (response, status, xhr) {
+            if (status === "error") {
+                $("#content").html("<h2 style='text-align:center; color:red;'>SYSTEM FAILURE (404)</h2>");
+            } else {
+                // Reinicializa scripts específicos da página
+                initPageScripts(page);
+            }
+            $(this).fadeIn(200);
+        });
     });
 }
 
-function animateBlogCards() {
-    const cards = document.querySelectorAll(".blog-card");
-    cards.forEach((card, index) => {
-        setTimeout(() => card.classList.add("show"), 200 * (index + 1));
-    });
-}
+function initPageScripts(page) {
+    // Se for a Home, ativa o Slider
+    if (page === "home.html") {
+        $('.hero-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            cssEase: 'linear',
+            autoplay: true,
+            autoplaySpeed: 3000,
+            arrows: false
+        });
+    }
 
-// Exemplo: chamar após carregar o blog via SPA
-loadBlogContent().then(() => {
-    animateBlogCards();
-});
+    // Se for o Blog, ativa animações dos cards
+    if (page === "blog.html") {
+        const cards = document.querySelectorAll(".blog-card");
+        cards.forEach((card, index) => {
+            setTimeout(() => card.classList.add("show"), 200 * (index + 1));
+        });
+    }
+}

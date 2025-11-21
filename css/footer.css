@@ -1,0 +1,127 @@
+/* ========================================= */
+/* FOOTER - THE PIT STAGE */
+/* ========================================= */
+.arcade-footer {
+    background-color: #050505; /* Quase preto */
+    border-top: 4px solid var(--primary-color); /* Vermelho Sangue */
+    box-shadow: 0 -5px 20px rgba(255, 49, 49, 0.2); /* Glow vermelho no topo */
+    padding-top: 40px;
+    margin-top: 50px;
+    color: #fff;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 40px 20px;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* --- Marca --- */
+.footer-brand .logo {
+    font-size: 2.5rem;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(255, 49, 49, 0.5);
+}
+
+.footer-brand .highlight {
+    color: var(--accent-color); /* Amarelo */
+}
+
+.slogan {
+    color: #888;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 3px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* --- Arcade Status (Insert Coin) --- */
+.arcade-status {
+    text-align: center;
+    background: #111;
+    padding: 15px 30px;
+    border: 1px solid #333;
+    transform: skew(-10deg); /* Inclinação estilo UI de luta */
+}
+
+.arcade-status p {
+    margin: 0;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+.credits-count {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 5px;
+    font-family: monospace;
+}
+
+/* Animação de Piscar */
+.blink-text {
+    animation: blinker 1.5s linear infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+
+/* --- Redes Sociais --- */
+.footer-social h3 {
+    margin: 0 0 15px 0;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    text-align: right;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    font-size: 1.8rem;
+    color: #fff;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color);
+    transform: scale(1.2) rotate(5deg); /* Efeito de impacto */
+    text-shadow: 0 0 15px var(--accent-color);
+}
+
+/* --- Barra Inferior --- */
+.footer-bottom {
+    background-color: #000;
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid #222;
+    font-size: 0.9rem;
+    color: #666;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* Responsividade para Celular */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-social h3 {
+        text-align: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}
